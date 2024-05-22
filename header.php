@@ -186,7 +186,7 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="cart.php">Cart</a></li>
-          <li><a href="favorite.php">Favorite</a></li>
+          <li><a href="user_orders.php">Orders</a></li>
           <li><a href="contact.php">Contact</a></li>
         </ul>
       </div>

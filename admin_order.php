@@ -1,116 +1,101 @@
-<?php 
-include 'connect.php';
-session_start();
+<?php
+include 'components/pdo-connect.php';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Ensure only admins can access this page
 $admin_id = $_SESSION['admin_id'];
 if (!isset($admin_id)) {
     header('Location: login.php');
     exit;
 }
+
+// Handle status update for orders
+if (isset($_POST['order_id']) && isset($_POST['action'])) {
+    $order_id = filter_var($_POST['order_id'], FILTER_SANITIZE_NUMBER_INT);
+    $action = $_POST['action'];
+
+    $new_status = ($action === 'accept') ? 'Accepted' : 'Rejected';
+
+    $update_order = $conn->prepare("UPDATE orders SET status = ? WHERE id = ?");
+    $update_order->execute([$new_status, $order_id]);
+
+    if ($update_order->rowCount() > 0) {
+        echo "<script>alert('Order status updated to $new_status.');</script>";
+    } else {
+        echo "<script>alert('Failed to update order status.');</script>";
+    }
+}
+
+// Retrieve orders for the current user
+$query = $conn->prepare("SELECT o.id, b.name, o.status, o.order_date, u.username
+                         FROM orders o
+                         JOIN books b ON o.book_id = b.id
+                         JOIN users u ON o.user_id = u.id");
+$query->execute();
+$orders = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin panel</title>
-    <!-- font awesome cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- custom admin css file link -->
-    <link rel="stylesheet" href="admin.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-        }
-        .btn {
-            display: inline-block;
-            padding: 5px 10px;
-            color: #fff;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 3px;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Admin Orders</title>
+    <link rel="stylesheet" href="path/to/daisyui.css">
 </head>
+
 <body>
     <?php include 'admin_header.php'; ?>
-    <div class="container">
-        <h2>Order</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
-                    <th>Product Quantity</th>
-                    <th>Product Image</th>
-                    <th>Product Category</th>
-                    <th>Product Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $sql = "SELECT * FROM product";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>".$row['product_id']."</td>";
-                            echo "<td>".$row['product_name']."</td>";
-                            echo "<td>".$row['product_price']."</td>";
-                            echo "<td>".$row['product_quantity']."</td>";
-                            echo "<td><img src='images/".$row['product_image']."' alt='product image'></td>";
-                            echo "<td>".$row['product_category']."</td>";
-                            echo "<td>".$row['product_description']."</td>";
-                            echo "<td>
-                                    <a href='edit_product.php?product_id=".$row['product_id']."' class='btn'>Edit</a>
-                                    <a href='delete_product.php?product_id=".$row['product_id']."' class='btn'>Delete</a>
-                                </td>";
-                            echo "</tr>";
-                        }
-                    }
-                ?>
-            </tbody>
-        </table>
+    <div class="flex justify-center flex-col w-full items-center m-10">
+        <h2>All Orders</h2>
+        <?php if (!empty($orders)): ?>
+            <div class="overflow-x-auto flex item-center justify-center max-w-2xl">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Book Name</th>
+                            <th>User</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($orders as $order): ?>
+                            <tr class="m-2">
+                                <td><?= htmlspecialchars($order['name']); ?></td>
+                                <td><?= htmlspecialchars($order['username']); ?></td>
+                                <td><?= htmlspecialchars($order['status']); ?></td>
+                                <td><?= htmlspecialchars($order['order_date']); ?></td>
+                                <td>
+                                    <?php if ($order['status'] === 'Pending'): ?>
+                                        <form action="" method="post" class="inline-block">
+                                            <input type="hidden" name="order_id" value="<?= $order['id']; ?>">
+                                            <button type="submit" name="action" value="accept" class="btn btn-success"
+                                                onclick="return confirm('Accept this order?');">Accept</button>
+                                        </form>
+                                        <form action="" method="post" class="inline-block">
+                                            <input type="hidden" name="order_id" value="<?= $order['id']; ?>">
+                                            <button type="submit" name="action" value="reject" class="btn btn-error"
+                                                onclick="return confirm('Reject this order?');">Reject</button>
+                                        </form>
+                                    <?php else: ?>
+                                        <span><?= htmlspecialchars($order['status']); ?></span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <p>No orders found.</p>
+        <?php endif; ?>
     </div>
 </body>
+
 </html>

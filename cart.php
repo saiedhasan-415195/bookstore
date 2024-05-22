@@ -27,6 +27,43 @@ if (isset($_GET['cart_id'])) {
     }
 }
 
+// Handle order placement
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
+    try {
+        // Start a transaction
+        $conn->beginTransaction();
+
+        // Retrieve cart items for the current user
+        $query = $conn->prepare("SELECT book_id, quantity FROM carts WHERE user_id = ?");
+        $query->execute([$user_id]);
+        $cart_items = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!empty($cart_items)) {
+            // Insert each cart item into the orders table
+            $insert_order = $conn->prepare("INSERT INTO orders (book_id, user_id, status, order_date) VALUES (?, ?, 'Pending', NOW())");
+
+            foreach ($cart_items as $item) {
+                $insert_order->execute([$item['book_id'], $user_id]);
+            }
+
+            // Delete cart items after they have been added to the orders table
+            $delete_cart_items = $conn->prepare("DELETE FROM carts WHERE user_id = ?");
+            $delete_cart_items->execute([$user_id]);
+
+            // Commit the transaction
+            $conn->commit();
+
+            echo "<script>alert('Order placed successfully.');</script>";
+        } else {
+            echo "<script>alert('Your cart is empty.');</script>";
+        }
+    } catch (Exception $e) {
+        // Rollback the transaction in case of an error
+        $conn->rollBack();
+        echo "<script>alert('Failed to place order. Please try again.');</script>";
+    }
+}
+
 // Retrieve cart items for the current user
 $query = $conn->prepare("SELECT c.id, b.name, b.price, c.quantity, b.image_01 
                          FROM carts c 
@@ -48,11 +85,11 @@ $cart_items = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="flex justify-center m-10">
+    <div class="flex justify-center flex-col w-full items-center m-10">
         <!-- <h2>Your Cart</h2> -->
         <?php if (!empty($cart_items)): ?>
-            <div className="overflow-x-auto flex item-center justify-center">
-                <table className="table table-border">
+            <div class="overflow-x-auto flex item-center justify-center max-w-2xl">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -87,6 +124,11 @@ $cart_items = $query->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
             <p>Your cart is empty.</p>
         <?php endif; ?>
+
+        <form action="" method="post">
+            <button type="submit" name="place_order" class="btn btn-secondary btn-block"
+                    onclick="return confirm('Are you sure you want to place the order?');">ORDER</button>
+        </form>
     </div>
 </body>
 

@@ -50,7 +50,7 @@ if(isset($_POST["submit"])){
                 <hr>
                 <div class="btn-div">
                      <button class="submit-button" type="submit" name="submit" >Login</button>
-                    <p> <a href="forget.php">Forget Password</a></p>
+                    <!-- <p> <a href="forget.php">Forget Password</a></p> -->
                     <p>Don't have an account? <a href="registration.php">Registration</a>.</p>
                 </div>
                 <br><br>

@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="saied.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
 <body>
     <form action="" method="post" autocomplete="off">
@@ -50,13 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button class="submit-button" type="submit" name="submit" >submit</button>
                     <br><br>
                 </div>
-               
-    
-                
-
             </fieldset>
         </div>
     </form>
-
 </body>
 </html>

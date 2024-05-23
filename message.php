@@ -63,7 +63,6 @@ if (!isset($admin_id)) {
 <body>
     <?php include 'admin_header.php'; ?>
     <div class="container">
-        <h2>Messages</h2>
         <table>
             <thead>
                 <tr>
@@ -95,7 +94,8 @@ if (!isset($admin_id)) {
                             echo "</tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5'>No messages found</td></tr>";
+                        echo "<tr><td colspan='5' style='text-align: center;'>No messages found</td></tr>";
+
                     }
                 ?>
             </tbody>

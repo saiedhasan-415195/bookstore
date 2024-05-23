@@ -85,7 +85,7 @@ $cart_items = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="flex justify-center flex-col w-full items-center m-10">
+    <div class="flex justify-center flex-col w-full items-center mt-40px">
         <!-- <h2>Your Cart</h2> -->
         <?php if (!empty($cart_items)): ?>
             <div class="overflow-x-auto flex item-center justify-center max-w-2xl">

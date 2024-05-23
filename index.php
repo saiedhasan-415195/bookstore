@@ -1,6 +1,5 @@
 <?php
 include 'connect.php';
-include 'header.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +19,10 @@ include 'header.php';
 </head>
 
 <body>
+  <?php include 'header.php'; ?>
   <div>
-
+    
     <?php include 'components/home-card.php'; ?>
   </div>
 </body>
-
 </html>

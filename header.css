@@ -1,0 +1,149 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.class1 h3 {
+    margin: 0;
+}
+
+.class2 form {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center items vertically */
+}
+
+.class2 input[type="text"] {
+    text-align: center;
+    background-color: wheat;
+    margin-top: 20px;
+    margin-right: 3px;
+    padding: 5px;
+}
+
+.class2 .bt {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #0e3864;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    height: 100%; /* Include padding and border in the element's total width and height */
+}
+
+.class3 ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.class3 ul li {
+    margin-left: 1rem;
+}
+
+.class3 ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.class3 ul li a:hover {
+    color: #007bff;
+}
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons .fas {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icons .fas:hover {
+    color: #007bff;
+}
+
+.account-box {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust based on header height */
+    right: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 5px;
+    width: 250px;
+    z-index: 9999;
+}
+.account-box.active {
+    display: block;
+}
+
+.account-box p {
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.account-box span {
+    font-weight: 700;
+    color: #007bff;
+}
+
+.account-box a {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.account-box a:hover {
+    color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .class3 ul {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        display: none;
+    }
+
+    .class3 ul li {
+        margin: 1rem 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .class3 ul.active {
+        display: flex;
+    }
+
+    .icons .fas {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .icons #menu-btn {
+        display: block;
+    }
+}

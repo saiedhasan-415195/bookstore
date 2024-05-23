@@ -1,0 +1,37 @@
+/* Footer styling */
+.footer {
+    background-color: white;
+    color: black;
+    padding: 40px; /* Adjusted padding for better spacing */
+    display: flex;
+    flex-direction: row; /* Ensure elements are in a row */
+    justify-content: space-between; /* Space between the boxes */
+}
+
+.box {
+    flex: 1; /* Equal width for all boxes */
+    margin: 0 20px; /* Margin between boxes */
+}
+
+.box h3 {
+    color: purple;
+    font-size: large;
+    transition: border 0.3s ease; /* Smooth transition for hover */
+}
+
+.box h3:hover {
+    text-transform: uppercase; /* Make text uppercase on hover */
+    border: 2px solid black;
+}
+
+.box a {
+    color: black;
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+    transition: transform 0.3s ease; /* Smooth transition for hover */
+}
+
+.box a:hover {
+    transform: translateX(10px); /* Translate only once */
+}

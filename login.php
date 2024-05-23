@@ -42,7 +42,7 @@ if(isset($_POST["submit"])){
                 <p>Please fill in this form to login.</p>
                 <hr>
                 <div class="mid">
-                    <label for="email"><b>Username or Email</b></label><br>
+                    <label for="email"><b> Email</b></label><br>
                     <input type="text" placeholder="Enter Email" name="email" id="email" required value=""> <br><br>           
                     <label for="password"><b>Password</b></label><br>
                     <input type="password" placeholder="Enter Password" name="password" id="password" required value=""><br><br> 

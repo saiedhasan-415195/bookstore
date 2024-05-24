@@ -1,9 +1,6 @@
 <?php
 include 'pdo-connect.php';
 
-
-
-// Fetch all books from the database
 $stmt = $conn->prepare("SELECT * FROM books");
 $stmt->execute();
 $books = $stmt->fetchAll(PDO::FETCH_ASSOC);

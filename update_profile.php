@@ -1,14 +1,15 @@
 <?php
-include 'connect.php';
-include 'header.php';
-
 session_start();
+include 'connect.php';
+include 'admin_header.php';
+
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
     header('Location: login.php');
     exit;
 }
+
 
 // Fetch admin data from the 'users' table
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");

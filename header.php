@@ -19,8 +19,33 @@ if (session_status() === PHP_SESSION_NONE) {
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    .sb {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    .sb form {
+      display: flex;
+      align-items: center;
+    }
 
+    .sb input[type="text"] {
+      text-align: center;
+      background-color: wheat;
+      border: 1px solid #ccc;
+      margin-left: 20px;
+  
+    }
+
+    .sb .bt {
+      margin-left: 3px;
+      padding: 0 5px;
+      border: none;
+      background-color: #0e3864;
+      color: #fff;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -28,6 +53,12 @@ if (session_status() === PHP_SESSION_NONE) {
   <header class="header">
     <div class="flex">
       <a href="index.php" class="logo">BookStore</a>
+      <div class="sb">
+        <form action="search.php" method="post">
+          <input type="text" name="search" placeholder="Search">
+          <button class="bt" type="submit">Search</button>
+        </form>
+      </div>
       <nav class="navbar">
         <a href="index.php">Home</a>
         <a href="cart.php">Cart</a>

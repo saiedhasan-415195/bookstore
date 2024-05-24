@@ -37,7 +37,6 @@ if (session_status() === PHP_SESSION_NONE) {
       margin-left: 20px;
   
     }
-
     .sb .bt {
       margin-left: 3px;
       padding: 0 5px;
@@ -90,5 +89,5 @@ if (session_status() === PHP_SESSION_NONE) {
     };
   </script>
 </body>
-
 </html>
+

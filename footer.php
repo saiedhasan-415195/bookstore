@@ -8,16 +8,55 @@ include 'connect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="saied.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .footer {
+            background-color: wheat;
+            padding-left: 150px;
+            margin: 30px;
+        }
+
+        .footer .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        
+        }
+
+        .box {
+            flex: 1;
+
+        }
+
+        .box h3 {
+            color: purple;
+            font-size: large;
+            transition: border 0.3s ease;
+        }
+
+        .box h3:hover {
+            text-transform: uppercase;
+            border: 2px solid black;
+        }
+
+        .box a {
+            color: black;
+            display: block;
+            margin: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .box a:hover {
+            transform: translateX(10px);
+        }
+    </style>
 </head>
 
 <body>
     <footer class="footer">
-
         <section class="grid">
             <div class="box">
                 <h3>quick links</h3>
@@ -31,7 +70,7 @@ include 'connect.php';
                 <a href="login.php"> <i class="fas fa-angle-right"></i> login</a>
                 <a href="registration.php"> <i class="fas fa-angle-right"></i> register</a>
                 <a href="cart.php"> <i class="fas fa-angle-right"></i> cart</a>
-                <a href="order.php"> <i class="fas fa-angle-right"></i> favorite</a>
+                <a href="user_orders.php"> <i class="fas fa-angle-right"></i> Orders</a>
             </div>
 
             <div class="box">

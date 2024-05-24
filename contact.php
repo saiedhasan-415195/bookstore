@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </fieldset>
         </div>
     </form>
+    
 </body>
-
+<?php include 'footer.php'?>
 </html>

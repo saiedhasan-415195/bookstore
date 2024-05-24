@@ -1,26 +1,23 @@
-/* Footer styling */
 .footer {
     background-color: white;
     color: black;
-    padding: 40px; /* Adjusted padding for better spacing */
+    padding: 40px; 
     display: flex;
-    flex-direction: row; /* Ensure elements are in a row */
-    justify-content: space-between; /* Space between the boxes */
+    flex-direction: row; 
+    justify-content: space-between; 
 }
-
 .box {
-    flex: 1; /* Equal width for all boxes */
-    margin: 0 20px; /* Margin between boxes */
+    flex: 1; 
+    margin: 0 20px; 
 }
-
 .box h3 {
     color: purple;
     font-size: large;
-    transition: border 0.3s ease; /* Smooth transition for hover */
+    transition: border 0.3s ease; 
 }
 
 .box h3:hover {
-    text-transform: uppercase; /* Make text uppercase on hover */
+    text-transform: uppercase; 
     border: 2px solid black;
 }
 
@@ -29,9 +26,8 @@
     display: block;
     margin: 10px 0;
     text-decoration: none;
-    transition: transform 0.3s ease; /* Smooth transition for hover */
+    transition: transform 0.3s ease; 
 }
-
 .box a:hover {
-    transform: translateX(10px); /* Translate only once */
+    transform: translateX(10px);
 }

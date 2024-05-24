@@ -61,7 +61,7 @@ if (isset($_POST['add_product'])) {
         <form class="max-w-lg  " action="" method="post" enctype="multipart/form-data">
             <label class="form-control w-full max-w-xs">
                 <div class="label">
-                    <span class="label-text">Product Name</span>
+                    <span class="label-text">Book Name</span>
 
                 </div>
                 <input type="text" name="name" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
@@ -81,21 +81,6 @@ if (isset($_POST['add_product'])) {
                 </div>
                 <input type="file" name="image_01" class="file-input file-input-primary file-input-bordered w-full max-w-xs" />
             </label>
-
-            <label class="form-control w-full max-w-xs">
-                <div class="label">
-                    <span class="label-text">Category</span>
-                    <!-- <span class="label-text-alt">Alt label</span> -->
-                </div>
-                <select class="select select-bordered">
-                    <option disabled selected>Pick one</option>
-                    <option>Star Wars</option>
-                    <option>Harry Potter</option>
-                    <option>Lord of the Rings</option>
-                    <option>Planet of the Apes</option>
-                    <option>Star Trek</option>
-                </select>
-
             </label>
 
             <!-- <input type="file" class="my-4 file-input file-input-bordered file-input-primary w-full max-w-xs" /> -->

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Password</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
@@ -27,6 +27,10 @@
                 <hr>
                 <div class="btn-div">
                     <button type="submit" name="submit" class="reset-button">Change Password</button>
+                    
+                </div>
+                <div class="btn-div">
+                <a href="login.php">Login</a>
                 </div>
             </fieldset>
         </form>

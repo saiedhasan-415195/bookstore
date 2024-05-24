@@ -1,0 +1,84 @@
+
+.container {
+    position: relative;
+    padding: 50px 30%;
+    background-color: rgba(255, 255, 255, 0.5); /* Optional: to add a slight background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* To hide the pseudo-element overflow */
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(img/book_pic.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
+    z-index: -1; 
+}
+.container fieldset{
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+fieldset h2{
+    color: blue;
+    font-weight: bold
+
+}
+fieldset p,a{
+    color: rgb(10, 10, 10);
+}
+fieldset h2,p{
+    text-align: center;
+    justify-content: center;
+}
+fieldset .btn-div{
+    text-align: center;
+    justify-content: start;
+}
+fieldset .btn-div button:hover{
+    background-color:green;
+}
+.mid{
+    margin-right: 50px;
+    margin-left: 50px;;
+    text-align: start;
+    padding-top: 10px;
+}
+.mid label,input,textarea{
+    margin-left: 80px;
+    margin-right: 50px;
+}
+/* css for label */
+fieldset label{
+    color: rgb(2, 128, 2);
+    text-align: start;
+    justify-content: start;
+    font-size: 15px;
+}
+/* css for input */
+fieldset input,textarea{
+
+    border-radius: 5px;
+    padding: 3px 1px;
+    padding-right: 10px;
+    background: transparent;
+    border-radius: 1px black;
+}
+fieldset input::placeholder{
+    text-align: center;
+    font-weight: bold;
+    color: rgb(32, 31, 31);
+}
+
+.submit-button{
+    padding: 10px 30px;
+    background-color: blueviolet;
+    color: white;
+}

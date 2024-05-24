@@ -13,9 +13,9 @@ if (isset($_POST['search'])) {
     $search_query = $_POST['search'];
     $search_query = filter_var($search_query, FILTER_SANITIZE_STRING);
 
-    // Fetch books based on the search query
-    $stmt = $conn->prepare("SELECT * FROM books WHERE name LIKE ?");
-    $stmt->execute(['%' . $search_query . '%']);
+    // Fetch books based on the search query for either book name or author name
+    $stmt = $conn->prepare("SELECT * FROM books WHERE name LIKE ? OR author_name LIKE ?");
+    $stmt->execute(['%' . $search_query . '%', '%' . $search_query . '%']);
 } else {
     // Fetch all books if no search query is provided
     $stmt = $conn->prepare("SELECT * FROM books");

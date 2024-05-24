@@ -72,6 +72,7 @@ if (session_status() === PHP_SESSION_NONE) {
       <div class="account-box" id="account-box">
         <p>User Name: <span><?php echo $_SESSION['user_name']; ?></span></p>
         <p>Email: <span><?php echo $_SESSION['user_email']; ?></span></p>
+        <a href="user_update">Update Profile</a>
         <a href="logout.php">Logout</a>
       </div>
     </div>

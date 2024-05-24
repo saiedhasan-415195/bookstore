@@ -57,9 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        // Hash the new password
-        $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
-
         // Database connection
         $conn = new mysqli('localhost', 'root', '', 'bookstore');
 
@@ -70,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Update the password
         $stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
-        $stmt->bind_param("ss", $hashed_password, $username);
+        $stmt->bind_param("ss", $new_password, $username);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {

@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     $sql = "DELETE FROM messages WHERE id = $id";
     if (mysqli_query($conn, $sql)) {
-        header('Location: admin_panel.php'); // Redirect back to the admin panel
+        header('Location: message.php'); // Redirect back to the admin panel
         exit;
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
